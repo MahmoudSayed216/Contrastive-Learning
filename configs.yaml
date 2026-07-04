@@ -1,0 +1,24 @@
+LEAKY_RELU_FACTOR: 0.01
+EMBEDDING_SIZE: 128
+# --- Training ---
+EPOCHS: 30
+LEARNING_RATE: 0.01
+BATCH_SIZE: 64
+DEVICE: "auto"          # "auto" | "cuda" | "mps" | "cpu"
+MARGIN: 1.0             # TripletMarginLoss margin
+NUM_WORKERS: 2
+SEED: 42
+
+# --- ReduceLROnPlateau (monitors validation triplet loss) ---
+SCHEDULER_FACTOR: 0.5
+SCHEDULER_PATIENCE: 3
+SCHEDULER_MIN_LR: 0.000001
+
+# --- KNN classification accuracy (evaluation metric only, not used in loss) ---
+KNN_K: 5
+KNN_MAX_SAMPLES: 5000   # size of the reference bank sampled from the train set each epoch
+
+# --- Checkpointing / logging ---
+CHECKPOINT_DIR: "checkpoints"
+LOG_DIR: "logs"
+DATA_BASE_DIR: "/kaggle/input/datasets/oddrationale/mnist-in-csv"
