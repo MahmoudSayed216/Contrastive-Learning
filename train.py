@@ -276,7 +276,6 @@ def train(cfg: dict):
 def main():
     parser = argparse.ArgumentParser(description="Train a Siamese network with Triplet Loss on MNIST.")
     parser.add_argument("--config", type=str, default="configs.yaml", help="Path to the YAML config file.")
-    parser.add_argument("--config", type=str, default="configs.yaml", help="Path to the YAML config file.")
     args = parser.parse_args()
 
     with open(args.config, "r") as f:
