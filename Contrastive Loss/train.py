@@ -197,8 +197,11 @@ def train(cfg: dict):
     logger.info(f"Using device: {device}")
 
     logger.info("Loading datasets...")
-    train_dataset = MNISTDataset(csv_path="data/mnist_train.csv")
-    val_dataset = MNISTDataset(csv_path="data/mnist_test.csv")
+
+    train_path = os.path.join(cfg["DATA_BASE_DIR"], "mnist_train.csv")
+    test_path  = os.path.join(cfg["DATA_BASE_DIR"], "mnist_test.csv")
+    train_dataset = MNISTDataset(csv_path=train_path)
+    val_dataset = MNISTDataset(csv_path= test_path)
 
     train_loader = DataLoader(
         train_dataset,
@@ -220,7 +223,7 @@ def train(cfg: dict):
     train_images, train_labels = df_to_images_labels(train_dataset.df)
     test_images, test_labels = df_to_images_labels(val_dataset.df)
 
-    model = SiameseRIZZNet().to(device)
+    model = SiameseRIZZNet(embedding_size=cfg["EMBEDDING_SIZE"], leaky_relu_factor=cfg["LEAKY_RELU_FACTOR"]).to(device)
     criterion = ContrastiveLoss(margin=cfg.get("MARGIN", 1.0))
     optimizer = optim.Adam(model.parameters(), lr=cfg["LEARNING_RATE"])
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
