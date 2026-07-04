@@ -223,7 +223,7 @@ def train(cfg: dict):
     train_images, train_labels = df_to_images_labels(train_dataset.df)
     test_images, test_labels = df_to_images_labels(val_dataset.df)
 
-    model = SiameseRIZZNet().to(device)
+    model = SiameseRIZZNet(embedding_size=cfg["EMBEDDING_SIZE"], leaky_relu_factor=cfg["LEAKY_RELU_FACTOR"]).to(device)
     criterion = nn.TripletMarginLoss(margin=cfg.get("MARGIN", 1.0))
     optimizer = optim.Adam(model.parameters(), lr=cfg["LEARNING_RATE"])
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
