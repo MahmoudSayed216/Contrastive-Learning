@@ -1,0 +1,228 @@
+17:38:03 | INFO | Logging to logs/train_20260704_173803.log
+17:38:03 | INFO | Using device: cuda
+17:38:03 | INFO | Loading datasets...
+17:38:19 | INFO |   [Epoch 1/30] Batch 187/937 | Batch Contrastive Loss: 0.0912
+17:38:26 | INFO |   [Epoch 1/30] Batch 374/937 | Batch Contrastive Loss: 0.0882
+17:38:32 | INFO |   [Epoch 1/30] Batch 561/937 | Batch Contrastive Loss: 0.0740
+17:38:39 | INFO |   [Epoch 1/30] Batch 748/937 | Batch Contrastive Loss: 0.0525
+17:38:45 | INFO |   [Epoch 1/30] Batch 935/937 | Batch Contrastive Loss: 0.0390
+17:38:52 | INFO | Epoch 1/30 | Train Contrastive Loss: 0.1054 | Val Contrastive Loss: 0.0340 | LR: 0.010000
+17:38:52 | INFO |   KNN (k=5) -> Acc: 0.9661 | Precision (macro): 0.9658 | Recall (macro): 0.9657 | F1 (macro): 0.9657
+17:38:52 | INFO |   -> New best model (val_loss=0.0340) saved to checkpoints/best_model.pt
+17:38:59 | INFO |   [Epoch 2/30] Batch 187/937 | Batch Contrastive Loss: 0.0285
+17:39:05 | INFO |   [Epoch 2/30] Batch 374/937 | Batch Contrastive Loss: 0.0257
+17:39:12 | INFO |   [Epoch 2/30] Batch 561/937 | Batch Contrastive Loss: 0.0305
+17:39:18 | INFO |   [Epoch 2/30] Batch 748/937 | Batch Contrastive Loss: 0.0193
+17:39:25 | INFO |   [Epoch 2/30] Batch 935/937 | Batch Contrastive Loss: 0.0176
+17:39:31 | INFO | Epoch 2/30 | Train Contrastive Loss: 0.0256 | Val Contrastive Loss: 0.0244 | LR: 0.010000
+17:39:31 | INFO |   KNN (k=5) -> Acc: 0.9819 | Precision (macro): 0.9819 | Recall (macro): 0.9819 | F1 (macro): 0.9818
+17:39:31 | INFO |   -> New best model (val_loss=0.0244) saved to checkpoints/best_model.pt
+17:39:38 | INFO |   [Epoch 3/30] Batch 187/937 | Batch Contrastive Loss: 0.0250
+17:39:45 | INFO |   [Epoch 3/30] Batch 374/937 | Batch Contrastive Loss: 0.0280
+17:39:51 | INFO |   [Epoch 3/30] Batch 561/937 | Batch Contrastive Loss: 0.0094
+17:39:58 | INFO |   [Epoch 3/30] Batch 748/937 | Batch Contrastive Loss: 0.0105
+17:40:05 | INFO |   [Epoch 3/30] Batch 935/937 | Batch Contrastive Loss: 0.0193
+17:40:11 | INFO | Epoch 3/30 | Train Contrastive Loss: 0.0153 | Val Contrastive Loss: 0.0203 | LR: 0.010000
+17:40:11 | INFO |   KNN (k=5) -> Acc: 0.9874 | Precision (macro): 0.9874 | Recall (macro): 0.9872 | F1 (macro): 0.9873
+17:40:11 | INFO |   -> New best model (val_loss=0.0203) saved to checkpoints/best_model.pt
+17:40:18 | INFO |   [Epoch 4/30] Batch 187/937 | Batch Contrastive Loss: 0.0088
+17:40:25 | INFO |   [Epoch 4/30] Batch 374/937 | Batch Contrastive Loss: 0.0100
+17:40:31 | INFO |   [Epoch 4/30] Batch 561/937 | Batch Contrastive Loss: 0.0062
+17:40:38 | INFO |   [Epoch 4/30] Batch 748/937 | Batch Contrastive Loss: 0.0140
+17:40:44 | INFO |   [Epoch 4/30] Batch 935/937 | Batch Contrastive Loss: 0.0129
+17:40:51 | INFO | Epoch 4/30 | Train Contrastive Loss: 0.0114 | Val Contrastive Loss: 0.0141 | LR: 0.010000
+17:40:51 | INFO |   KNN (k=5) -> Acc: 0.9874 | Precision (macro): 0.9872 | Recall (macro): 0.9873 | F1 (macro): 0.9873
+17:40:51 | INFO |   -> New best model (val_loss=0.0141) saved to checkpoints/best_model.pt
+17:40:58 | INFO |   [Epoch 5/30] Batch 187/937 | Batch Contrastive Loss: 0.0105
+17:41:04 | INFO |   [Epoch 5/30] Batch 374/937 | Batch Contrastive Loss: 0.0154
+17:41:11 | INFO |   [Epoch 5/30] Batch 561/937 | Batch Contrastive Loss: 0.0135
+17:41:17 | INFO |   [Epoch 5/30] Batch 748/937 | Batch Contrastive Loss: 0.0170
+17:41:24 | INFO |   [Epoch 5/30] Batch 935/937 | Batch Contrastive Loss: 0.0136
+17:41:30 | INFO | Epoch 5/30 | Train Contrastive Loss: 0.0104 | Val Contrastive Loss: 0.0115 | LR: 0.010000
+17:41:30 | INFO |   KNN (k=5) -> Acc: 0.9892 | Precision (macro): 0.9891 | Recall (macro): 0.9891 | F1 (macro): 0.9891
+17:41:30 | INFO |   -> New best model (val_loss=0.0115) saved to checkpoints/best_model.pt
+17:41:37 | INFO |   [Epoch 6/30] Batch 187/937 | Batch Contrastive Loss: 0.0130
+17:41:43 | INFO |   [Epoch 6/30] Batch 374/937 | Batch Contrastive Loss: 0.0045
+17:41:50 | INFO |   [Epoch 6/30] Batch 561/937 | Batch Contrastive Loss: 0.0047
+17:41:56 | INFO |   [Epoch 6/30] Batch 748/937 | Batch Contrastive Loss: 0.0088
+17:42:03 | INFO |   [Epoch 6/30] Batch 935/937 | Batch Contrastive Loss: 0.0086
+17:42:09 | INFO | Epoch 6/30 | Train Contrastive Loss: 0.0093 | Val Contrastive Loss: 0.0108 | LR: 0.010000
+17:42:09 | INFO |   KNN (k=5) -> Acc: 0.9897 | Precision (macro): 0.9898 | Recall (macro): 0.9896 | F1 (macro): 0.9897
+17:42:09 | INFO |   -> New best model (val_loss=0.0108) saved to checkpoints/best_model.pt
+17:42:16 | INFO |   [Epoch 7/30] Batch 187/937 | Batch Contrastive Loss: 0.0136
+17:42:22 | INFO |   [Epoch 7/30] Batch 374/937 | Batch Contrastive Loss: 0.0122
+17:42:29 | INFO |   [Epoch 7/30] Batch 561/937 | Batch Contrastive Loss: 0.0063
+17:42:35 | INFO |   [Epoch 7/30] Batch 748/937 | Batch Contrastive Loss: 0.0024
+17:42:42 | INFO |   [Epoch 7/30] Batch 935/937 | Batch Contrastive Loss: 0.0093
+17:42:48 | INFO | Epoch 7/30 | Train Contrastive Loss: 0.0086 | Val Contrastive Loss: 0.0104 | LR: 0.010000
+17:42:48 | INFO |   KNN (k=5) -> Acc: 0.9905 | Precision (macro): 0.9905 | Recall (macro): 0.9904 | F1 (macro): 0.9904
+17:42:48 | INFO |   -> New best model (val_loss=0.0104) saved to checkpoints/best_model.pt
+17:42:55 | INFO |   [Epoch 8/30] Batch 187/937 | Batch Contrastive Loss: 0.0061
+17:43:01 | INFO |   [Epoch 8/30] Batch 374/937 | Batch Contrastive Loss: 0.0155
+17:43:07 | INFO |   [Epoch 8/30] Batch 561/937 | Batch Contrastive Loss: 0.0073
+17:43:14 | INFO |   [Epoch 8/30] Batch 748/937 | Batch Contrastive Loss: 0.0085
+17:43:21 | INFO |   [Epoch 8/30] Batch 935/937 | Batch Contrastive Loss: 0.0069
+17:43:27 | INFO | Epoch 8/30 | Train Contrastive Loss: 0.0084 | Val Contrastive Loss: 0.0141 | LR: 0.010000
+17:43:27 | INFO |   KNN (k=5) -> Acc: 0.9872 | Precision (macro): 0.9872 | Recall (macro): 0.9871 | F1 (macro): 0.9871
+17:43:33 | INFO |   [Epoch 9/30] Batch 187/937 | Batch Contrastive Loss: 0.0039
+17:43:40 | INFO |   [Epoch 9/30] Batch 374/937 | Batch Contrastive Loss: 0.0109
+17:43:46 | INFO |   [Epoch 9/30] Batch 561/937 | Batch Contrastive Loss: 0.0043
+17:43:53 | INFO |   [Epoch 9/30] Batch 748/937 | Batch Contrastive Loss: 0.0078
+17:43:59 | INFO |   [Epoch 9/30] Batch 935/937 | Batch Contrastive Loss: 0.0100
+17:44:06 | INFO | Epoch 9/30 | Train Contrastive Loss: 0.0079 | Val Contrastive Loss: 0.0144 | LR: 0.010000
+17:44:06 | INFO |   KNN (k=5) -> Acc: 0.9864 | Precision (macro): 0.9865 | Recall (macro): 0.9862 | F1 (macro): 0.9863
+17:44:13 | INFO |   [Epoch 10/30] Batch 187/937 | Batch Contrastive Loss: 0.0071
+17:44:19 | INFO |   [Epoch 10/30] Batch 374/937 | Batch Contrastive Loss: 0.0091
+17:44:25 | INFO |   [Epoch 10/30] Batch 561/937 | Batch Contrastive Loss: 0.0043
+17:44:32 | INFO |   [Epoch 10/30] Batch 748/937 | Batch Contrastive Loss: 0.0024
+17:44:38 | INFO |   [Epoch 10/30] Batch 935/937 | Batch Contrastive Loss: 0.0059
+17:44:45 | INFO | Epoch 10/30 | Train Contrastive Loss: 0.0075 | Val Contrastive Loss: 0.0074 | LR: 0.010000
+17:44:45 | INFO |   KNN (k=5) -> Acc: 0.9919 | Precision (macro): 0.9920 | Recall (macro): 0.9918 | F1 (macro): 0.9919
+17:44:45 | INFO |   -> New best model (val_loss=0.0074) saved to checkpoints/best_model.pt
+17:44:51 | INFO |   [Epoch 11/30] Batch 187/937 | Batch Contrastive Loss: 0.0061
+17:44:58 | INFO |   [Epoch 11/30] Batch 374/937 | Batch Contrastive Loss: 0.0068
+17:45:04 | INFO |   [Epoch 11/30] Batch 561/937 | Batch Contrastive Loss: 0.0036
+17:45:11 | INFO |   [Epoch 11/30] Batch 748/937 | Batch Contrastive Loss: 0.0105
+17:45:17 | INFO |   [Epoch 11/30] Batch 935/937 | Batch Contrastive Loss: 0.0052
+17:45:23 | INFO | Epoch 11/30 | Train Contrastive Loss: 0.0070 | Val Contrastive Loss: 0.0116 | LR: 0.010000
+17:45:23 | INFO |   KNN (k=5) -> Acc: 0.9879 | Precision (macro): 0.9880 | Recall (macro): 0.9880 | F1 (macro): 0.9879
+17:45:30 | INFO |   [Epoch 12/30] Batch 187/937 | Batch Contrastive Loss: 0.0035
+17:45:36 | INFO |   [Epoch 12/30] Batch 374/937 | Batch Contrastive Loss: 0.0025
+17:45:43 | INFO |   [Epoch 12/30] Batch 561/937 | Batch Contrastive Loss: 0.0138
+17:45:49 | INFO |   [Epoch 12/30] Batch 748/937 | Batch Contrastive Loss: 0.0070
+17:45:56 | INFO |   [Epoch 12/30] Batch 935/937 | Batch Contrastive Loss: 0.0084
+17:46:03 | INFO | Epoch 12/30 | Train Contrastive Loss: 0.0067 | Val Contrastive Loss: 0.0120 | LR: 0.010000
+17:46:03 | INFO |   KNN (k=5) -> Acc: 0.9892 | Precision (macro): 0.9891 | Recall (macro): 0.9892 | F1 (macro): 0.9891
+17:46:09 | INFO |   [Epoch 13/30] Batch 187/937 | Batch Contrastive Loss: 0.0061
+17:46:16 | INFO |   [Epoch 13/30] Batch 374/937 | Batch Contrastive Loss: 0.0081
+17:46:22 | INFO |   [Epoch 13/30] Batch 561/937 | Batch Contrastive Loss: 0.0013
+17:46:29 | INFO |   [Epoch 13/30] Batch 748/937 | Batch Contrastive Loss: 0.0072
+17:46:35 | INFO |   [Epoch 13/30] Batch 935/937 | Batch Contrastive Loss: 0.0045
+17:46:42 | INFO | Epoch 13/30 | Train Contrastive Loss: 0.0065 | Val Contrastive Loss: 0.0057 | LR: 0.010000
+17:46:42 | INFO |   KNN (k=5) -> Acc: 0.9930 | Precision (macro): 0.9931 | Recall (macro): 0.9929 | F1 (macro): 0.9930
+17:46:42 | INFO |   -> New best model (val_loss=0.0057) saved to checkpoints/best_model.pt
+17:46:48 | INFO |   [Epoch 14/30] Batch 187/937 | Batch Contrastive Loss: 0.0062
+17:46:54 | INFO |   [Epoch 14/30] Batch 374/937 | Batch Contrastive Loss: 0.0026
+17:47:01 | INFO |   [Epoch 14/30] Batch 561/937 | Batch Contrastive Loss: 0.0045
+17:47:07 | INFO |   [Epoch 14/30] Batch 748/937 | Batch Contrastive Loss: 0.0046
+17:47:14 | INFO |   [Epoch 14/30] Batch 935/937 | Batch Contrastive Loss: 0.0023
+17:47:21 | INFO | Epoch 14/30 | Train Contrastive Loss: 0.0060 | Val Contrastive Loss: 0.0054 | LR: 0.010000
+17:47:21 | INFO |   KNN (k=5) -> Acc: 0.9911 | Precision (macro): 0.9912 | Recall (macro): 0.9909 | F1 (macro): 0.9910
+17:47:21 | INFO |   -> New best model (val_loss=0.0054) saved to checkpoints/best_model.pt
+17:47:27 | INFO |   [Epoch 15/30] Batch 187/937 | Batch Contrastive Loss: 0.0062
+17:47:34 | INFO |   [Epoch 15/30] Batch 374/937 | Batch Contrastive Loss: 0.0039
+17:47:40 | INFO |   [Epoch 15/30] Batch 561/937 | Batch Contrastive Loss: 0.0075
+17:47:47 | INFO |   [Epoch 15/30] Batch 748/937 | Batch Contrastive Loss: 0.0036
+17:47:53 | INFO |   [Epoch 15/30] Batch 935/937 | Batch Contrastive Loss: 0.0034
+17:48:00 | INFO | Epoch 15/30 | Train Contrastive Loss: 0.0054 | Val Contrastive Loss: 0.0080 | LR: 0.010000
+17:48:00 | INFO |   KNN (k=5) -> Acc: 0.9910 | Precision (macro): 0.9912 | Recall (macro): 0.9908 | F1 (macro): 0.9910
+17:48:06 | INFO |   [Epoch 16/30] Batch 187/937 | Batch Contrastive Loss: 0.0052
+17:48:12 | INFO |   [Epoch 16/30] Batch 374/937 | Batch Contrastive Loss: 0.0050
+17:48:19 | INFO |   [Epoch 16/30] Batch 561/937 | Batch Contrastive Loss: 0.0010
+17:48:25 | INFO |   [Epoch 16/30] Batch 748/937 | Batch Contrastive Loss: 0.0055
+17:48:32 | INFO |   [Epoch 16/30] Batch 935/937 | Batch Contrastive Loss: 0.0045
+17:48:38 | INFO | Epoch 16/30 | Train Contrastive Loss: 0.0052 | Val Contrastive Loss: 0.0058 | LR: 0.010000
+17:48:38 | INFO |   KNN (k=5) -> Acc: 0.9917 | Precision (macro): 0.9918 | Recall (macro): 0.9916 | F1 (macro): 0.9917
+17:48:45 | INFO |   [Epoch 17/30] Batch 187/937 | Batch Contrastive Loss: 0.0029
+17:48:51 | INFO |   [Epoch 17/30] Batch 374/937 | Batch Contrastive Loss: 0.0020
+17:48:58 | INFO |   [Epoch 17/30] Batch 561/937 | Batch Contrastive Loss: 0.0018
+17:49:04 | INFO |   [Epoch 17/30] Batch 748/937 | Batch Contrastive Loss: 0.0100
+17:49:11 | INFO |   [Epoch 17/30] Batch 935/937 | Batch Contrastive Loss: 0.0084
+17:49:17 | INFO | Epoch 17/30 | Train Contrastive Loss: 0.0050 | Val Contrastive Loss: 0.0102 | LR: 0.010000
+17:49:17 | INFO |   KNN (k=5) -> Acc: 0.9904 | Precision (macro): 0.9907 | Recall (macro): 0.9903 | F1 (macro): 0.9905
+17:49:24 | INFO |   [Epoch 18/30] Batch 187/937 | Batch Contrastive Loss: 0.0019
+17:49:30 | INFO |   [Epoch 18/30] Batch 374/937 | Batch Contrastive Loss: 0.0015
+17:49:37 | INFO |   [Epoch 18/30] Batch 561/937 | Batch Contrastive Loss: 0.0044
+17:49:43 | INFO |   [Epoch 18/30] Batch 748/937 | Batch Contrastive Loss: 0.0057
+17:49:50 | INFO |   [Epoch 18/30] Batch 935/937 | Batch Contrastive Loss: 0.0152
+17:49:56 | INFO | Epoch 18/30 | Train Contrastive Loss: 0.0047 | Val Contrastive Loss: 0.0061 | LR: 0.010000
+17:49:56 | INFO |   KNN (k=5) -> Acc: 0.9924 | Precision (macro): 0.9924 | Recall (macro): 0.9924 | F1 (macro): 0.9924
+17:50:03 | INFO |   [Epoch 19/30] Batch 187/937 | Batch Contrastive Loss: 0.0046
+17:50:09 | INFO |   [Epoch 19/30] Batch 374/937 | Batch Contrastive Loss: 0.0005
+17:50:15 | INFO |   [Epoch 19/30] Batch 561/937 | Batch Contrastive Loss: 0.0014
+17:50:22 | INFO |   [Epoch 19/30] Batch 748/937 | Batch Contrastive Loss: 0.0008
+17:50:29 | INFO |   [Epoch 19/30] Batch 935/937 | Batch Contrastive Loss: 0.0008
+17:50:35 | INFO | Epoch 19/30 | Train Contrastive Loss: 0.0023 | Val Contrastive Loss: 0.0034 | LR: 0.005000
+17:50:35 | INFO |   KNN (k=5) -> Acc: 0.9938 | Precision (macro): 0.9939 | Recall (macro): 0.9938 | F1 (macro): 0.9938
+17:50:35 | INFO |   -> New best model (val_loss=0.0034) saved to checkpoints/best_model.pt
+17:50:42 | INFO |   [Epoch 20/30] Batch 187/937 | Batch Contrastive Loss: 0.0040
+17:50:48 | INFO |   [Epoch 20/30] Batch 374/937 | Batch Contrastive Loss: 0.0005
+17:50:54 | INFO |   [Epoch 20/30] Batch 561/937 | Batch Contrastive Loss: 0.0009
+17:51:01 | INFO |   [Epoch 20/30] Batch 748/937 | Batch Contrastive Loss: 0.0024
+17:51:08 | INFO |   [Epoch 20/30] Batch 935/937 | Batch Contrastive Loss: 0.0024
+17:51:14 | INFO | Epoch 20/30 | Train Contrastive Loss: 0.0021 | Val Contrastive Loss: 0.0035 | LR: 0.005000
+17:51:14 | INFO |   KNN (k=5) -> Acc: 0.9932 | Precision (macro): 0.9933 | Recall (macro): 0.9931 | F1 (macro): 0.9932
+17:51:21 | INFO |   [Epoch 21/30] Batch 187/937 | Batch Contrastive Loss: 0.0012
+17:51:27 | INFO |   [Epoch 21/30] Batch 374/937 | Batch Contrastive Loss: 0.0015
+17:51:33 | INFO |   [Epoch 21/30] Batch 561/937 | Batch Contrastive Loss: 0.0018
+17:51:40 | INFO |   [Epoch 21/30] Batch 748/937 | Batch Contrastive Loss: 0.0085
+17:51:47 | INFO |   [Epoch 21/30] Batch 935/937 | Batch Contrastive Loss: 0.0031
+17:51:53 | INFO | Epoch 21/30 | Train Contrastive Loss: 0.0019 | Val Contrastive Loss: 0.0037 | LR: 0.005000
+17:51:53 | INFO |   KNN (k=5) -> Acc: 0.9941 | Precision (macro): 0.9942 | Recall (macro): 0.9940 | F1 (macro): 0.9941
+17:52:00 | INFO |   [Epoch 22/30] Batch 187/937 | Batch Contrastive Loss: 0.0004
+17:52:06 | INFO |   [Epoch 22/30] Batch 374/937 | Batch Contrastive Loss: 0.0006
+17:52:12 | INFO |   [Epoch 22/30] Batch 561/937 | Batch Contrastive Loss: 0.0007
+17:52:19 | INFO |   [Epoch 22/30] Batch 748/937 | Batch Contrastive Loss: 0.0007
+17:52:25 | INFO |   [Epoch 22/30] Batch 935/937 | Batch Contrastive Loss: 0.0025
+17:52:32 | INFO | Epoch 22/30 | Train Contrastive Loss: 0.0020 | Val Contrastive Loss: 0.0048 | LR: 0.005000
+17:52:32 | INFO |   KNN (k=5) -> Acc: 0.9942 | Precision (macro): 0.9943 | Recall (macro): 0.9941 | F1 (macro): 0.9942
+17:52:38 | INFO |   [Epoch 23/30] Batch 187/937 | Batch Contrastive Loss: 0.0012
+17:52:45 | INFO |   [Epoch 23/30] Batch 374/937 | Batch Contrastive Loss: 0.0056
+17:52:51 | INFO |   [Epoch 23/30] Batch 561/937 | Batch Contrastive Loss: 0.0011
+17:52:58 | INFO |   [Epoch 23/30] Batch 748/937 | Batch Contrastive Loss: 0.0001
+17:53:04 | INFO |   [Epoch 23/30] Batch 935/937 | Batch Contrastive Loss: 0.0024
+17:53:11 | INFO | Epoch 23/30 | Train Contrastive Loss: 0.0019 | Val Contrastive Loss: 0.0036 | LR: 0.005000
+17:53:11 | INFO |   KNN (k=5) -> Acc: 0.9945 | Precision (macro): 0.9946 | Recall (macro): 0.9944 | F1 (macro): 0.9945
+17:53:17 | INFO |   [Epoch 24/30] Batch 187/937 | Batch Contrastive Loss: 0.0003
+17:53:24 | INFO |   [Epoch 24/30] Batch 374/937 | Batch Contrastive Loss: 0.0006
+17:53:30 | INFO |   [Epoch 24/30] Batch 561/937 | Batch Contrastive Loss: 0.0006
+17:53:37 | INFO |   [Epoch 24/30] Batch 748/937 | Batch Contrastive Loss: 0.0007
+17:53:44 | INFO |   [Epoch 24/30] Batch 935/937 | Batch Contrastive Loss: 0.0039
+17:53:50 | INFO | Epoch 24/30 | Train Contrastive Loss: 0.0010 | Val Contrastive Loss: 0.0029 | LR: 0.002500
+17:53:50 | INFO |   KNN (k=5) -> Acc: 0.9943 | Precision (macro): 0.9944 | Recall (macro): 0.9942 | F1 (macro): 0.9943
+17:53:50 | INFO |   -> New best model (val_loss=0.0029) saved to checkpoints/best_model.pt
+17:53:57 | INFO |   [Epoch 25/30] Batch 187/937 | Batch Contrastive Loss: 0.0006
+17:54:03 | INFO |   [Epoch 25/30] Batch 374/937 | Batch Contrastive Loss: 0.0002
+17:54:09 | INFO |   [Epoch 25/30] Batch 561/937 | Batch Contrastive Loss: 0.0022
+17:54:16 | INFO |   [Epoch 25/30] Batch 748/937 | Batch Contrastive Loss: 0.0002
+17:54:23 | INFO |   [Epoch 25/30] Batch 935/937 | Batch Contrastive Loss: 0.0003
+17:54:29 | INFO | Epoch 25/30 | Train Contrastive Loss: 0.0009 | Val Contrastive Loss: 0.0027 | LR: 0.002500
+17:54:29 | INFO |   KNN (k=5) -> Acc: 0.9950 | Precision (macro): 0.9950 | Recall (macro): 0.9949 | F1 (macro): 0.9950
+17:54:29 | INFO |   -> New best model (val_loss=0.0027) saved to checkpoints/best_model.pt
+17:54:36 | INFO |   [Epoch 26/30] Batch 187/937 | Batch Contrastive Loss: 0.0002
+17:54:42 | INFO |   [Epoch 26/30] Batch 374/937 | Batch Contrastive Loss: 0.0009
+17:54:49 | INFO |   [Epoch 26/30] Batch 561/937 | Batch Contrastive Loss: 0.0001
+17:54:55 | INFO |   [Epoch 26/30] Batch 748/937 | Batch Contrastive Loss: 0.0014
+17:55:02 | INFO |   [Epoch 26/30] Batch 935/937 | Batch Contrastive Loss: 0.0006
+17:55:08 | INFO | Epoch 26/30 | Train Contrastive Loss: 0.0007 | Val Contrastive Loss: 0.0037 | LR: 0.002500
+17:55:08 | INFO |   KNN (k=5) -> Acc: 0.9944 | Precision (macro): 0.9945 | Recall (macro): 0.9943 | F1 (macro): 0.9944
+17:55:15 | INFO |   [Epoch 27/30] Batch 187/937 | Batch Contrastive Loss: 0.0007
+17:55:21 | INFO |   [Epoch 27/30] Batch 374/937 | Batch Contrastive Loss: 0.0001
+17:55:28 | INFO |   [Epoch 27/30] Batch 561/937 | Batch Contrastive Loss: 0.0047
+17:55:34 | INFO |   [Epoch 27/30] Batch 748/937 | Batch Contrastive Loss: 0.0004
+17:55:41 | INFO |   [Epoch 27/30] Batch 935/937 | Batch Contrastive Loss: 0.0002
+17:55:47 | INFO | Epoch 27/30 | Train Contrastive Loss: 0.0007 | Val Contrastive Loss: 0.0036 | LR: 0.002500
+17:55:47 | INFO |   KNN (k=5) -> Acc: 0.9945 | Precision (macro): 0.9946 | Recall (macro): 0.9944 | F1 (macro): 0.9945
+17:55:54 | INFO |   [Epoch 28/30] Batch 187/937 | Batch Contrastive Loss: 0.0001
+17:56:00 | INFO |   [Epoch 28/30] Batch 374/937 | Batch Contrastive Loss: 0.0004
+17:56:07 | INFO |   [Epoch 28/30] Batch 561/937 | Batch Contrastive Loss: 0.0001
+17:56:13 | INFO |   [Epoch 28/30] Batch 748/937 | Batch Contrastive Loss: 0.0003
+17:56:20 | INFO |   [Epoch 28/30] Batch 935/937 | Batch Contrastive Loss: 0.0009
+17:56:27 | INFO | Epoch 28/30 | Train Contrastive Loss: 0.0007 | Val Contrastive Loss: 0.0039 | LR: 0.002500
+17:56:27 | INFO |   KNN (k=5) -> Acc: 0.9943 | Precision (macro): 0.9944 | Recall (macro): 0.9942 | F1 (macro): 0.9943
+17:56:33 | INFO |   [Epoch 29/30] Batch 187/937 | Batch Contrastive Loss: 0.0001
+17:56:40 | INFO |   [Epoch 29/30] Batch 374/937 | Batch Contrastive Loss: 0.0002
+17:56:46 | INFO |   [Epoch 29/30] Batch 561/937 | Batch Contrastive Loss: 0.0002
+17:56:52 | INFO |   [Epoch 29/30] Batch 748/937 | Batch Contrastive Loss: 0.0009
+17:56:59 | INFO |   [Epoch 29/30] Batch 935/937 | Batch Contrastive Loss: 0.0004
+17:57:06 | INFO | Epoch 29/30 | Train Contrastive Loss: 0.0007 | Val Contrastive Loss: 0.0035 | LR: 0.002500
+17:57:06 | INFO |   KNN (k=5) -> Acc: 0.9933 | Precision (macro): 0.9933 | Recall (macro): 0.9933 | F1 (macro): 0.9933
+17:57:12 | INFO |   [Epoch 30/30] Batch 187/937 | Batch Contrastive Loss: 0.0000
+17:57:19 | INFO |   [Epoch 30/30] Batch 374/937 | Batch Contrastive Loss: 0.0001
+17:57:25 | INFO |   [Epoch 30/30] Batch 561/937 | Batch Contrastive Loss: 0.0070
+17:57:31 | INFO |   [Epoch 30/30] Batch 748/937 | Batch Contrastive Loss: 0.0001
+17:57:38 | INFO |   [Epoch 30/30] Batch 935/937 | Batch Contrastive Loss: 0.0001
+17:57:45 | INFO | Epoch 30/30 | Train Contrastive Loss: 0.0004 | Val Contrastive Loss: 0.0029 | LR: 0.001250
+17:57:45 | INFO |   KNN (k=5) -> Acc: 0.9941 | Precision (macro): 0.9942 | Recall (macro): 0.9940 | F1 (macro): 0.9941
+17:57:45 | INFO | Training complete.
+17:57:45 | INFO | Best validation contrastive loss: 0.0027
