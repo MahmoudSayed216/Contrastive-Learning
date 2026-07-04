@@ -224,11 +224,9 @@ def train(cfg: dict):
 
     epochs = cfg["EPOCHS"]
     for epoch in range(1, epochs + 1):
-        print("2")
         train_loss = train_one_epoch(
             model, train_loader, optimizer, criterion, device, logger, epoch, epochs
         )
-        print("2")
 
         val_loss = evaluate(model, val_loader, criterion, device)
 
