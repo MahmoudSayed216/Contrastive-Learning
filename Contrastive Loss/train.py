@@ -16,6 +16,8 @@ from sklearn.metrics import (
     average_precision_score,
     precision_recall_curve,
     precision_recall_fscore_support,
+    precision_score,
+    recall_score,
     roc_auc_score,
     roc_curve,
 )
@@ -185,13 +187,19 @@ def compute_verification_metrics(distances: np.ndarray, labels: np.ndarray, marg
     precision, recall, pr_thresholds = precision_recall_curve(labels, scores)
     average_precision = average_precision_score(labels, scores)
 
-    # Verification accuracy: predict "same" if distance is under the loss's own
-    # margin -- the natural decision boundary the model was trained against.
+    # Verification accuracy/precision/recall: predict "same" if distance is under
+    # the loss's own margin -- the natural decision boundary the model was
+    # trained against. These are single scalars at that one threshold, distinct
+    # from the "precision"/"recall" curve arrays swept across all thresholds below.
     predictions = (distances < margin).astype(int)
     accuracy = accuracy_score(labels, predictions)
+    precision_at_margin = precision_score(labels, predictions, zero_division=0)
+    recall_at_margin = recall_score(labels, predictions, zero_division=0)
 
     return {
         "accuracy": accuracy,
+        "precision_at_margin": precision_at_margin,
+        "recall_at_margin": recall_at_margin,
         "roc_auc": roc_auc,
         "average_precision": average_precision,
         "fpr": fpr,
@@ -396,6 +404,8 @@ def train(cfg: dict):
 
     logger.info(
         f"Verification -> Accuracy: {verification_metrics['accuracy']:.4f} "
+        f"| Precision: {verification_metrics['precision_at_margin']:.4f} "
+        f"| Recall: {verification_metrics['recall_at_margin']:.4f} "
         f"| ROC AUC: {verification_metrics['roc_auc']:.4f} "
         f"| Average Precision: {verification_metrics['average_precision']:.4f}"
     )
