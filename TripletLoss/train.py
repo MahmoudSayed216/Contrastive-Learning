@@ -184,6 +184,39 @@ def collect_triplet_pair_distances(model: nn.Module, loader: DataLoader, device:
     return distances, labels
 
 
+def find_best_threshold_youden(fpr: np.ndarray, tpr: np.ndarray, roc_thresholds: np.ndarray) -> float:
+    """Threshold (in distance units) that maximizes TPR - FPR (Youden's J statistic).
+
+    roc_curve works in score space (scores = -distances), so we convert the
+    chosen score threshold back into a distance threshold at the end.
+    """
+    j_scores = tpr - fpr
+    best_idx = np.argmax(j_scores)
+    best_score_threshold = roc_thresholds[best_idx]
+    return -best_score_threshold
+
+
+def find_best_threshold_f1(precision: np.ndarray, recall: np.ndarray, pr_thresholds: np.ndarray) -> float:
+    """Threshold (in distance units) that maximizes F1 = 2PR / (P + R).
+
+    precision_recall_curve returns one more point than thresholds (the last
+    precision/recall point has no corresponding threshold) -- drop it to align,
+    same fix as export_pr_csv.
+    """
+    precision = precision[:len(pr_thresholds)]
+    recall = recall[:len(pr_thresholds)]
+
+    f1_scores = np.divide(
+        2 * precision * recall,
+        precision + recall,
+        out=np.zeros_like(precision),
+        where=(precision + recall) > 0,
+    )
+    best_idx = np.argmax(f1_scores)
+    best_score_threshold = pr_thresholds[best_idx]
+    return -best_score_threshold
+
+
 def compute_verification_metrics(distances: np.ndarray, labels: np.ndarray, margin: float) -> dict:
     """Accuracy, ROC curve, and Precision-Recall curve for the pair-verification task.
 
@@ -197,19 +230,56 @@ def compute_verification_metrics(distances: np.ndarray, labels: np.ndarray, marg
     precision, recall, pr_thresholds = precision_recall_curve(labels, scores)
     average_precision = average_precision_score(labels, scores)
 
-    # Verification accuracy/precision/recall: predict "same" if distance is under
-    # the loss's own margin -- the natural decision boundary the model was
-    # trained against. These are single scalars at that one threshold, distinct
-    # from the "precision"/"recall" curve arrays swept across all thresholds below.
-    predictions = (distances < margin).astype(int)
-    accuracy = accuracy_score(labels, predictions)
-    precision_at_margin = precision_score(labels, predictions, zero_division=0)
-    recall_at_margin = recall_score(labels, predictions, zero_division=0)
+    # Verification accuracy/precision/recall AT THE CONFIGURED MARGIN: predict
+    # "same" if distance is under the loss's margin. This is the natural
+    # decision boundary for contrastive-style losses that directly optimize
+    # d < margin, but for TripletMarginLoss (which only enforces a *relative*
+    # gap between d(a,p) and d(a,n)) the raw margin value has no reason to sit
+    # at a good absolute cutoff for this model's distance scale. Kept here for
+    # reference/comparability with contrastive runs.
+    predictions_at_margin = (distances < margin).astype(int)
+    accuracy_at_margin = accuracy_score(labels, predictions_at_margin)
+    precision_at_margin = precision_score(labels, predictions_at_margin, zero_division=0)
+    recall_at_margin = recall_score(labels, predictions_at_margin, zero_division=0)
+
+    # Verification accuracy/precision/recall AT THE OPTIMAL THRESHOLD: instead
+    # of assuming margin is a meaningful absolute cutoff, pick the threshold
+    # that actually separates this model's own same/different distance
+    # distributions best (max F1 from the PR curve). This is the fair way to
+    # evaluate a triplet-trained model, whose absolute distance scale is
+    # arbitrary by construction.
+    best_threshold = find_best_threshold_f1(precision, recall, pr_thresholds)
+    predictions_at_best = (distances < best_threshold).astype(int)
+    accuracy_at_best = accuracy_score(labels, predictions_at_best)
+    precision_at_best = precision_score(labels, predictions_at_best, zero_division=0)
+    recall_at_best = recall_score(labels, predictions_at_best, zero_division=0)
+
+    # Also report the Youden's-J threshold/accuracy for comparison, since it
+    # optimizes TPR - FPR rather than F1 and can land at a different point.
+    youden_threshold = find_best_threshold_youden(fpr, tpr, roc_thresholds)
+    predictions_at_youden = (distances < youden_threshold).astype(int)
+    accuracy_at_youden = accuracy_score(labels, predictions_at_youden)
+    precision_at_youden = precision_score(labels, predictions_at_youden, zero_division=0)
+    recall_at_youden = recall_score(labels, predictions_at_youden, zero_division=0)
 
     return {
-        "accuracy": accuracy,
+        # margin-based (reference / comparability with contrastive models)
+        "accuracy": accuracy_at_margin,
         "precision_at_margin": precision_at_margin,
         "recall_at_margin": recall_at_margin,
+
+        # best-F1-threshold-based (fair evaluation for triplet-trained embeddings)
+        "best_threshold": best_threshold,
+        "accuracy_at_best": accuracy_at_best,
+        "precision_at_best": precision_at_best,
+        "recall_at_best": recall_at_best,
+
+        # Youden's-J-threshold-based (alternative operating point)
+        "youden_threshold": youden_threshold,
+        "accuracy_at_youden": accuracy_at_youden,
+        "precision_at_youden": precision_at_youden,
+        "recall_at_youden": recall_at_youden,
+
         "roc_auc": roc_auc,
         "average_precision": average_precision,
         "fpr": fpr,
@@ -414,11 +484,24 @@ def train(cfg: dict):
     )
 
     logger.info(
-        f"Verification -> Accuracy: {verification_metrics['accuracy']:.4f} "
+        f"Verification @ config margin ({cfg.get('MARGIN', 1.0):.4f}) -> "
+        f"Accuracy: {verification_metrics['accuracy']:.4f} "
         f"| Precision: {verification_metrics['precision_at_margin']:.4f} "
         f"| Recall: {verification_metrics['recall_at_margin']:.4f} "
         f"| ROC AUC: {verification_metrics['roc_auc']:.4f} "
         f"| Average Precision: {verification_metrics['average_precision']:.4f}"
+    )
+    logger.info(
+        f"Verification @ best-F1 threshold ({verification_metrics['best_threshold']:.4f}) -> "
+        f"Accuracy: {verification_metrics['accuracy_at_best']:.4f} "
+        f"| Precision: {verification_metrics['precision_at_best']:.4f} "
+        f"| Recall: {verification_metrics['recall_at_best']:.4f}"
+    )
+    logger.info(
+        f"Verification @ Youden's-J threshold ({verification_metrics['youden_threshold']:.4f}) -> "
+        f"Accuracy: {verification_metrics['accuracy_at_youden']:.4f} "
+        f"| Precision: {verification_metrics['precision_at_youden']:.4f} "
+        f"| Recall: {verification_metrics['recall_at_youden']:.4f}"
     )
 
     roc_csv_path = os.path.join(checkpoint_dir, cfg.get("ROC_CSV_NAME", "roc_curve.csv"))
