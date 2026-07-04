@@ -198,8 +198,8 @@ def train(cfg: dict):
     logger.info(f"Using device: {device}")
 
     logger.info("Loading datasets...")
-    train_path = os.path.join(cfg["BASE_DATA_DIR"], "mnist_train.csv")
-    test_path  = os.path.join(cfg["BASE_DATA_DIR"], "mnist_test.csv")
+    train_path = os.path.join(cfg["DATA_BASE_DIR"], "mnist_train.csv")
+    test_path  = os.path.join(cfg["DATA_BASE_DIR"], "mnist_test.csv")
     train_dataset = MNISTDataset(csv_path=train_path)
     val_dataset = MNISTDataset(csv_path= test_path)
 
