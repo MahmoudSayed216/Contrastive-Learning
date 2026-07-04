@@ -5,11 +5,20 @@ import random
 from datetime import datetime
 
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.optim as optim
 import yaml
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+from sklearn.metrics import (
+    accuracy_score,
+    average_precision_score,
+    precision_recall_curve,
+    precision_recall_fscore_support,
+    roc_auc_score,
+    roc_curve,
+)
 from sklearn.neighbors import KNeighborsClassifier
 from torch.utils.data import DataLoader
 
@@ -128,6 +137,95 @@ def compute_knn_metrics(
         "recall": recall,
         "f1": f1,
     }
+
+
+# --------------------------------------------------------------------------- #
+# Verification evaluation: Accuracy / ROC / Precision-Recall
+# --------------------------------------------------------------------------- #
+# Unlike compute_knn_metrics (which classifies which DIGIT an embedding belongs
+# to), this treats the problem the way triplet/verification models are normally
+# evaluated: is embedding distance a good score for "are these the same digit?"
+# Each triplet is unpacked into two verification pairs:
+#   (anchor, positive) -> label 1 (same class)
+#   (anchor, negative) -> label 0 (different class)
+
+@torch.no_grad()
+def collect_triplet_pair_distances(model: nn.Module, loader: DataLoader, device: torch.device):
+    """One pass over a triplet-yielding DataLoader (anchor, positive, negative).
+    Returns flat (distances, labels) arrays covering both the anchor-positive
+    and anchor-negative pair from every triplet."""
+    model.eval()
+    all_distances = []
+    all_labels = []
+
+    for anchor, positive, negative in loader:
+        anchor = anchor.to(device)
+        positive = positive.to(device)
+        negative = negative.to(device)
+
+        emb_a = model(anchor)
+        emb_p = model(positive)
+        emb_n = model(negative)
+
+        dist_pos = F.pairwise_distance(emb_a, emb_p)
+        dist_neg = F.pairwise_distance(emb_a, emb_n)
+
+        batch_size = anchor.shape[0]
+        all_distances.append(dist_pos.cpu())
+        all_labels.append(torch.ones(batch_size))
+
+        all_distances.append(dist_neg.cpu())
+        all_labels.append(torch.zeros(batch_size))
+
+    distances = torch.cat(all_distances).numpy()
+    labels = torch.cat(all_labels).numpy()
+    return distances, labels
+
+
+def compute_verification_metrics(distances: np.ndarray, labels: np.ndarray, margin: float) -> dict:
+    """Accuracy, ROC curve, and Precision-Recall curve for the pair-verification task.
+
+    Smaller distance = more likely "same class", so similarity score = -distance
+    (sklearn's curve functions just need higher score => more likely positive)."""
+    scores = -distances
+
+    fpr, tpr, roc_thresholds = roc_curve(labels, scores)
+    roc_auc = roc_auc_score(labels, scores)
+
+    precision, recall, pr_thresholds = precision_recall_curve(labels, scores)
+    average_precision = average_precision_score(labels, scores)
+
+    # Verification accuracy: predict "same" if distance is under the loss's own
+    # margin -- the natural decision boundary the model was trained against.
+    predictions = (distances < margin).astype(int)
+    accuracy = accuracy_score(labels, predictions)
+
+    return {
+        "accuracy": accuracy,
+        "roc_auc": roc_auc,
+        "average_precision": average_precision,
+        "fpr": fpr,
+        "tpr": tpr,
+        "roc_thresholds": roc_thresholds,
+        "precision": precision,
+        "recall": recall,
+        "pr_thresholds": pr_thresholds,
+    }
+
+
+def export_roc_csv(fpr: np.ndarray, tpr: np.ndarray, thresholds: np.ndarray, path: str):
+    pd.DataFrame({"fpr": fpr, "tpr": tpr, "threshold": thresholds}).to_csv(path, index=False)
+
+
+def export_pr_csv(precision: np.ndarray, recall: np.ndarray, thresholds: np.ndarray, path: str):
+    # precision_recall_curve returns len(thresholds) == len(precision) - 1
+    # (the last precision/recall point has no corresponding threshold).
+    n = len(thresholds)
+    pd.DataFrame({
+        "precision": precision[:n],
+        "recall": recall[:n],
+        "threshold": thresholds,
+    }).to_csv(path, index=False)
 
 
 # --------------------------------------------------------------------------- #
@@ -291,6 +389,42 @@ def train(cfg: dict):
 
     logger.info("Training complete.")
     logger.info(f"Best validation triplet loss: {best_val_loss:.4f}")
+
+    # ------------------------------------------------------------------- #
+    # Post-training verification evaluation on the BEST checkpoint:
+    # Accuracy / ROC curve / Precision-Recall curve (pair-verification task)
+    # ------------------------------------------------------------------- #
+    logger.info("Running verification evaluation (Accuracy / ROC / Precision-Recall) on best checkpoint...")
+
+    best_ckpt_path = os.path.join(checkpoint_dir, "best_model.pt")
+    best_ckpt = torch.load(best_ckpt_path, map_location=device)
+    model.load_state_dict(best_ckpt["model_state_dict"])
+
+    distances, pair_labels = collect_triplet_pair_distances(model, val_loader, device)
+    verification_metrics = compute_verification_metrics(
+        distances, pair_labels, margin=cfg.get("MARGIN", 1.0)
+    )
+
+    logger.info(
+        f"Verification -> Accuracy: {verification_metrics['accuracy']:.4f} "
+        f"| ROC AUC: {verification_metrics['roc_auc']:.4f} "
+        f"| Average Precision: {verification_metrics['average_precision']:.4f}"
+    )
+
+    roc_csv_path = os.path.join(checkpoint_dir, cfg.get("ROC_CSV_NAME", "roc_curve.csv"))
+    pr_csv_path = os.path.join(checkpoint_dir, cfg.get("PR_CSV_NAME", "precision_recall_curve.csv"))
+
+    export_roc_csv(
+        verification_metrics["fpr"], verification_metrics["tpr"],
+        verification_metrics["roc_thresholds"], roc_csv_path,
+    )
+    export_pr_csv(
+        verification_metrics["precision"], verification_metrics["recall"],
+        verification_metrics["pr_thresholds"], pr_csv_path,
+    )
+
+    logger.info(f"ROC curve data exported to {roc_csv_path}")
+    logger.info(f"Precision-Recall curve data exported to {pr_csv_path}")
 
 
 def main():
