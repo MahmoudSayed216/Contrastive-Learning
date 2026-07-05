@@ -38,16 +38,6 @@ here are the metrics i used to evaluate both networks:
 | LR | 0.001250 | 0.002500 |
 
 
-## KNN (k=5) Evaluation
-
-| Metric | Contrastive | Triplet |
-|---|---|---|
-| Accuracy | 0.9948 | **0.9949** |
-| Precision (macro) | 0.9948 | **0.9949** |
-| Recall (macro) | 0.9947 | **0.9948** |
-| F1 (macro) | 0.9947 | **0.9949** |
-
-
 ## Verification Metrics
 
 | Metric | Contrastive | Triplet |
@@ -57,6 +47,16 @@ here are the metrics i used to evaluate both networks:
 | Recall | 0.9978 | **0.9917** |
 | ROC AUC | 0.9990 | **0.9996** |
 | Average Precision | 0.9991 | **0.9996** |
+
+
+## KNN (k=5) Evaluation
+
+| Metric | Contrastive | Triplet |
+|---|---|---|
+| Accuracy | 0.9948 | **0.9949** |
+| Precision (macro) | 0.9948 | **0.9949** |
+| Recall (macro) | 0.9947 | **0.9948** |
+| F1 (macro) | 0.9947 | **0.9949** |
 
 
 there are several reasons Triplets performed better than Contrastive most importantly is that Triplets aims to ensure that d(a,p) is less then d(a,n) without exceeding a specific margin. whereas Contrastive loss only performs on pairs, either getting similar pairs closer together or getting dissimilar pairs further apart. the first approach gives each item a sense of where it stand relative to other classes, whereas the contrastive operates in a way that makes it unaware of other classes, there's no relativity involved here, only absolute distances between pairs. the triplets approach should in theory result in better separation between different classes.
