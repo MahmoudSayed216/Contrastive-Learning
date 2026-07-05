@@ -61,7 +61,6 @@ here are the metrics i used to evaluate both networks:
 there are several reasons Triplets performed better than Contrastive most importantly is that Triplets aims to ensure that d(a,p) is less then d(a,n) without exceeding a specific margin. whereas Contrastive loss only performs on pairs, either getting similar pairs closer together or getting dissimilar pairs further apart. the first approach gives each item a sense of where it stand relative to other classes, whereas the contrastive operates in a way that makes it unaware of other classes, there's no relativity involved here, only absolute distances between pairs. the triplets approach should in theory result in better separation between different classes.
 
 
-
 # Embedding Visualizations: Contrastive vs Triplet Loss
 
 > Place this file in the same parent folder as your `pics/` directory so the image paths resolve correctly.
@@ -69,30 +68,58 @@ there are several reasons Triplets performed better than Contrastive most import
 ## t-SNE — Contrastive
 
 ![t-SNE Contrastive 3D 1](pics/t-SNE%20CONTRASTIVE%203D%201.png)
+**t-SNE CONTRASTIVE 3D 1.png**
+
 ![t-SNE Contrastive 3D 2](pics/t-SNE%20CONTRASTIVE%203D%202.png)
+**t-SNE CONTRASTIVE 3D 2.png**
+
 ![t-SNE Contrastive 3D 3](pics/t-SNE%20CONTRASTIVE%203D%203.png)
+**t-SNE CONTRASTIVE 3D 3.png**
 
 ## t-SNE — Triplet
 
 ![t-SNE Triplet 2D](pics/t-SNE%20TRIPLET%202D.png)
+**t-SNE TRIPLET 2D.png**
+
 ![t-SNE Triplet 3D 1](pics/t-SNE%20TRIPLET%203D%201.png)
+**t-SNE TRIPLET 3D 1.png**
+
 ![t-SNE Triplet 3D 2](pics/t-SNE%20TRIPLET%203D%202.png)
+**t-SNE TRIPLET 3D 2.png**
+
 ![t-SNE Triplet 3D 3](pics/t-SNE%20TRIPLET%203D%203.png)
+**t-SNE TRIPLET 3D 3.png**
 
 ## UMAP — Contrastive
 
 ![UMAP Contrastive 2D](pics/UMAP%20CONTRASTIVE%202D%20.png)
+**UMAP CONTRASTIVE 2D .png**
+
 ![UMAP Contrastive 2D](pics/UMAP%20CONTRASTIVE%202D.png)
+**UMAP CONTRASTIVE 2D.png**
+
 ![UMAP Contrastive 3D 1](pics/UMAP%20CONTRASTIVE%203D%201.png)
+**UMAP CONTRASTIVE 3D 1.png**
+
 ![UMAP Contrastive 3D 2](pics/UMAP%20CONTRASTIVE%203D%202.png)
+**UMAP CONTRASTIVE 3D 2.png**
+
 ![UMAP Contrastive 3D 3](pics/UMAP%20CONTRASTIVE%203D%203.png)
+**UMAP CONTRASTIVE 3D 3.png**
 
 ## UMAP — Triplet
 
 ![UMAP Triplet 2D](pics/UMAP%20TRIPLET%202D.png)
+**UMAP TRIPLET 2D.png**
+
 ![UMAP Triplet 3D 1](pics/UMAP%20TRIPLET%203D%201.png)
+**UMAP TRIPLET 3D 1.png**
+
 ![UMAP Triplet 3D 2](pics/UMAP%20TRIPLET%203D%202.png)
+**UMAP TRIPLET 3D 2.png**
+
 ![UMAP Triplet 3D 3](pics/UMAP%20TRIPLET%203D%203.png)
+**UMAP TRIPLET 3D 3.png**
 
 the slight differences show up in the t-SNE and UMAP visualizations
 
